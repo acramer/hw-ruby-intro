@@ -46,18 +46,56 @@ end
 
 def hello(name)
   # YOUR CODE HERE
+  return "Hello, "+name
 end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
+  if (/[\w&&[^aeiouAEIOU0-9]]+.*/ =~ s) == 0
+    return true
+  end
+  return false
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
+  # Return False if character that is not 0 or 1 exists
+  if ((/[^01]+/ =~ s) != nil or (s.length < 3 and s != '0'))
+    return false
+  elsif (s == '0' or s[-3..-1] == '100')
+    return true
+  else
+    return false
+  end
 end
 
 # Part 3
 
 class BookInStock
 # YOUR CODE HERE
+  def initialize(isbn, price)
+    raise ArgumentError.new(
+      "Invalid isbn, got #{isbn}"
+    ) if isbn == ''
+    raise ArgumentError.new(
+      "Expected a positive value, got #{price}"
+    ) if price <= 0
+    @isbn = isbn
+    @price = price
+  end
+  def isbn
+    @isbn
+  end
+  def isbn=(isbn)
+    @isbn = isbn
+  end
+  def price
+    @price
+  end
+  def price=(price)
+    @price = price
+  end
+  def price_as_string
+    "$%0.2f" % @price
+  end
 end
